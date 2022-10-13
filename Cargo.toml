@@ -1,0 +1,27 @@
+[package]
+name = "edgetrigger"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rp-pico = "0.5.0"
+rp2040-hal = "0.6.0"
+rp2040-boot2 = { version="0.2.1", optional=true }
+cortex-m = "0.7.6"
+cortex-m-rt = { version="0.7.1", optional=true }
+embedded-hal = "0.2.7"
+panic-halt = "0.2.0"
+cortex-m-rtic = "1.1.3"
+nb = "1.0.0"
+
+[features]
+default = ["boot2", "rt", "critical-section-impl", "rom-func-cache"]
+critical-section-impl = ["rp2040-hal/critical-section-impl"]
+boot2 = ["rp2040-boot2"]
+rt = ["cortex-m-rt", "rp2040-hal/rt"]
+rp2040-e5 = ["rp2040-hal/rp2040-e5"]
+rom-func-cache = ["rp2040-hal/rom-func-cache"]
+disable-intrinsics = ["rp2040-hal/disable-intrinsics"]
+rom-v2-intrinsics = ["rp2040-hal/rom-v2-intrinsics"]
